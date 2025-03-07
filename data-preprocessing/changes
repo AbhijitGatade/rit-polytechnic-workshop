@@ -5,3 +5,12 @@ encoded_data = ohe.fit_transform(df[['Country']])
 encoded_df = pd.DataFrame(encoded_data.toarray(), columns=ohe.get_feature_names_out(['Country']))
 df = pd.concat([df, encoded_df], axis=1)
 df.drop('Country', axis=1, inplace=True)
+
+
+#7. 1. Dividing dataset into X(independent) and y(dependent) Variable
+X = df[["Age", "Salary", "Country_France", "Country_Germany", "Country_Spain"]]
+y = df[["Purchased"]]
+
+#7.2 Dividing dataset into training and testing
+from sklearn.model_selection import train_test_split
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.2, random_state = 0)
